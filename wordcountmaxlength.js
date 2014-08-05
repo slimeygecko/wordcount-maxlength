@@ -1,5 +1,5 @@
 /**
- * plugin.js
+ * wordcountmaxlength.js
  *
  * Copyright, Moxiecode Systems AB
  * Released under LGPL License.
@@ -12,7 +12,7 @@
 
 /*global tinymce:true */
 
-tinymce.PluginManager.add('limitwordcount', function(editor) {
+tinymce.PluginManager.add('wordcountmaxlength', function(editor) {
 	var self = this, countre, cleanre;
 
 	// Included most unicode blocks see: http://en.wikipedia.org/wiki/Unicode_block
@@ -22,10 +22,12 @@ tinymce.PluginManager.add('limitwordcount', function(editor) {
 
 	function update() {
 		var wc = editor.theme.panel.find('#wordcount'),
-			charLimit = editor.getElement().dataset.charLimit;
+			// maximum character length set by data-max-length on textarea
+			charLimit = editor.getElement().dataset.maxLength;
 
 		if (charLimit != 'undefined' && self.getCharCount() > charLimit) {
 			wc.text(['Max limit reached!']);
+			// mce-danger class added to the wordcount status in the statusbar
 			wc[0].addClass('danger')
 			if (wc.length > 1) {
 				wc[1].addClass('danger');
