@@ -46,7 +46,9 @@ tinymce.PluginManager.add('wordcountmaxlength', function(editor) {
 		var statusbar = editor.theme.panel && editor.theme.panel.find('#statusbar')[0],
 			timeout;
 		if (statusbar) {
+
 			window.setTimeout(function() {
+				
 				statusbar.insert({
 					type: 'label',
 					name: 'wordcount',
